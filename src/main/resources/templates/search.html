@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车票查询</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+<body class="body_searchBg">
+    <div class="container top ">
+        <div class="row titleRow ">
+            <h1>车票查询</h1>
+        </div>
+    </div>
+    <div class="container middle">
+        <div class="row titleRow ">
+            <form name="select" class="form-horizontal col-sm-10" th:action="@{/displayPage}" method="post">
+                <div class="form-group ">
+                    <label class="control-label" for="select_start">起始点</label>
+                        <select id="select_start" class="form-control" name="startSelect">
+                            <option th:selected="${train.start}" th:value="${train.start}" name="start" th:each="train :${train}" th:text="${train.start}">bb</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="select_end">终点</label>
+                    <select id="select_end" class="form-control" name="endSelect">
+                        <option th:each="train :${train}" name="end" th:value="${train.end}" th:text="${train.end}">aa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="select_date">日期</label>
+                    <select id="select_date" class="form-control" name="dateSelect">
+                        <option th:each="train :${train}" name="date" th:value="${train.date}" th:text="${train.date}"></option>
+                    </select>
+                </div>
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-primary">查询</button>
+                </div>
+            </form>
+            <div class="btn-group" style="margin-top: 20px" sec:authorize="hasAuthority('admit')">
+                <a th:href="@{/add}"><button type="button" class="btn btn-primary">添加车次信息</button></a>
+                <a th:href="@{/update}"><button type="button" class="btn btn-primary">更新车次信息</button></a>
+                <a th:href="@{/delete}"><button type="button" class="btn btn-primary">删除车次信息</button></a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

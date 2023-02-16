@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车票系统首页</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+<header id="header" class="header bg-white container">
+    <div class="navbar-container ">
+        <div ><h1>购票小站</h1></div>
+        <div class="navbar-menu ">
+            <form name="logoutform" th:action="@{/logout}" method="post"></form>
+            <a class="header-info" sec:authorize="isAnonymous()" th:href="@{/login}">登录</a>
+            <p sec:authorize="isAuthenticated()">[[${userName}]]，欢迎您</p>
+            <a class="header-info" sec:authorize="isAuthenticated()"
+               href="javascript:document.logoutform.submit();">退出</a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/toUpload}">点击上传文件</a>
+            <a sec:authorize="isAuthenticated()" th:href="@{/toDownload}">点击下载文件</a>
+        </div>
+    </div>
+</header>
+<body>
+<div class="container">
+    <h3>列车信息</h3>
+    <table class="table table-bordered body_style">
+        <thead>
+        <tr>
+            <th>列车编号</th>
+            <th>起始地</th>
+            <th>终点</th>
+            <th>日期</th>
+            <th>出发时间</th>
+            <th>价格</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item:${messageList}">
+            <td th:text="${item.trainNumber}">B1234</td>
+            <td th:text="${item.start}">北京</td>
+            <td th:text="${item.end}">南京</td>
+            <td th:text="${item.date}">2022-04-12</td>
+            <td th:text="${item.time}">6：30</td>
+            <td th:text="${item.prize}">180</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="container">
+    <a class="btn-group" style="margin-top: 50px" href="/search">
+        <button type="button" class="btn btn-primary">去搜索</button>
+    </a>
+    <div sec:authorize="hasAnyRole('ROLE_admit')" class="btn-group" style="margin-top: 50px">
+
+        <a href="/admit/addPage">
+            <button type="button" class="btn btn-primary">添加车次信息</button>
+        </a>
+        <a href="/admit/updatePage">
+            <button type="button" class="btn btn-primary">更新车次信息</button>
+        </a>
+        <a href="/admit/deletePage">
+            <button type="button" class="btn btn-primary">删除车次信息</button>
+        </a>
+    </div>
+</div>
+
+</body>
+
+</html>

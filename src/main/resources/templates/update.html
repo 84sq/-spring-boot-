@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车票系统首页</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+
+<body class="container-fluid row" style="margin-top: 20px">
+    <div class="col-sm-6">
+        <h1>更新车次信息</h1>
+        <form class="form-horizontal" role="form" th:action="@{/admit/updateManage}" th:method="post">
+            <div class="form-group">
+                <label for="train_number" class="col-sm-2 control-label">车辆编号</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="train_number" name="train_number" placeholder="请输入要修改信息的车辆编号">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="start" class="col-sm-2 control-label">起始点</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="start" id="start" placeholder="请输入起始点" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="end" class="col-sm-2 control-label">终点</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="end" id="end" placeholder="请输入终点" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="date" class="col-sm-2 control-label">日期</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="date" id="date" placeholder="请输入日期" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="time" class="col-sm-2 control-label">时间</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="time" id="time" placeholder="请输入时间" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="prize" class="col-sm-2 control-label">价格</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="prize" id="prize" placeholder="请输入价格" >
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">修改车次信息</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="col-sm-6">
+        <h2>列车信息</h2>
+        <table class="table table-bordered" >
+            <thead>
+            <tr>
+                <th>列车编号</th>
+                <th>起始地</th>
+                <th>终点</th>
+                <th>日期</th>
+                <th>出发时间</th>
+                <th>价格</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item:${trainMessageList}">
+                <td th:text="${item.trainNumber}">B1234</td>
+                <td th:text="${item.start}">北京</td>
+                <td th:text="${item.end}">南京</td>
+                <td th:text="${item.date}">2022-04-12</td>
+                <td th:text="${item.time}">6：30</td>
+                <td th:text="${item.prize}">180</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+</body>
+
+</html>

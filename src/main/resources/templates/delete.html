@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车票系统首页</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+
+<body>
+    <div class="container ">
+        <h1>删除车次信息</h1>
+        <form class="form-horizontal" role="form" th:action="@{/admit/deleteManage}" th:method="post">
+            <div class="form-group">
+                <label for="train_number" class="col-sm-2 control-label">车辆编号</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="train_number" id="train_number" placeholder="请输入车辆编号">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">删除该车次</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

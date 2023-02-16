@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>车票系统首页</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/index.css}">
+    <script th:src="@{/js/jquery.min.js}"></script>
+</head>
+
+<body>
+<div class="btn-group" style="margin-top: 20px">
+    <span th:if="${add != null}">添加成功，以下为最新列车信息。<a href="/indexPage">返回首页</a></span><br>
+    <span th:if="${update != null}">更新成功，以下为最新列车信息。<a href="/indexPage">返回首页</a></span><br>
+    <span th:if="${delete != null}">删除成功，以下为最新列车信息。<a href="/indexPage">返回首页</a></span><br>
+    <span th:if="${success != null}">修改成功，<a href="/login">返回登录页</a></span><br>
+
+</div>
+<div class="container" >
+    <h2>列车信息</h2>
+    <table class="table table-bordered" >
+        <thead>
+        <tr>
+            <th>列车编号</th>
+            <th>起始地</th>
+            <th>终点</th>
+            <th>日期</th>
+            <th>出发时间</th>
+            <th>价格</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item:${trainMessageList}">
+            <td th:text="${item.trainNumber}">B1234</td>
+            <td th:text="${item.start}">北京</td>
+            <td th:text="${item.end}">南京</td>
+            <td th:text="${item.date}">2022-04-12</td>
+            <td th:text="${item.time}">6：30</td>
+            <td th:text="${item.prize}">180</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
